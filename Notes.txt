@@ -205,7 +205,28 @@ const result = await db.users.updateMany(
 console.log(result.modifiedCount); // Number of documents modified
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#) MongoDB findOneAndUpdate() method :- In MongoDB, findOneAndUpdate() is a method that atomically finds a document in a collection, updates it, and returns either the original document before modification or the updated document depending on the options specified. This method is particularly useful for scenarios where you need to update a single document and optionally retrieve the document as it was before the update or after the update.
 
+Syntax:
+The basic syntax for findOneAndUpdate() in MongoDB is as follows:
+>>>db.collection.findOneAndUpdate(filter, update, options)
+
+EX :- 
+// Update the document where name is "Alice", and increment her age by 1
+const result = await db.users.findOneAndUpdate(
+    { name: "Alice" },
+    { $inc: { age: 1 } }
+);
+console.log(result.value); // Updated document
+
+
+// Find the document where name is "Bob" and update his age or create a new document if not found
+const result = await db.users.findOneAndUpdate(
+    { name: "Bob" },
+    { $set: { age: 35 } },
+    { upsert: true, returnOriginal: false }
+);
+console.log(result.value); // Updated or newly inserted document
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
