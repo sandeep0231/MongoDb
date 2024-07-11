@@ -154,12 +154,55 @@ EX: -
 const document = db.users.findOne({ name: "Alice" });
 console.log(document);
 
+When to Use Each
+Use find() when you need to retrieve multiple documents that match specific criteria.
+Use findOne() when you only need to retrieve one document that matches specific criteria or to check if a document exists
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#) MongoDB Update() Method :- The update() method updates the values in the existing document.
 
+>>>db.COLLECTION_NAME.update(SELECTION_CRITERIA, UPDATED_DATA)
 
+ The updateOne() method updates a single document that matches the specified filter in a collection.
+Syntax: db.collection.updateOne(filter, update, options)
+Usage:
+Accepts a filter object to specify which document(s) to update.
+Accepts an update object that defines the modifications to apply to the matched document.
+Returns an acknowledgment object with details about the update operation.
+
+Behavior:
+Updates only the first document that matches the filter.
+If no document matches the filter, no action is taken.
+Supports options like upsert to insert a new document if no match is found ({ upsert: true }).
+
+EX :-
+// Update the document where name is "Alice"
+const result = await db.users.updateOne(
+    { name: "Alice" },
+    { $set: { age: 31 } }
+);
+console.log(result.modifiedCount); // Number of documents modified (should be 1)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#) updateMany() :- 
+Definition: The updateMany() method updates all documents that match the specified filter in a collection.
+Syntax: >>>db.collection.updateMany(filter, update, options)
+Usage:
+Accepts a filter object to specify which document(s) to update.
+Accepts an update object that defines the modifications to apply to the matched documents.
+Returns an acknowledgment object with details about the update operation.
+Behavior:
+Updates all documents that match the filter.
+If no documents match the filter, no action is taken.
+Supports options like upsert to insert new documents if no matches are found ({ upsert: true }).
 
+EX :- 
+// Update all documents where age is greater than 30
+const result = await db.users.updateMany(
+    { age: { $gt: 30 } },
+    { $set: { status: "inactive" } }
+);
+console.log(result.modifiedCount); // Number of documents modified
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
