@@ -1,0 +1,162 @@
+db={
+  "employee": [
+    {
+      "_id": "60f5a4f9e1f74e6b9a3b4567",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "john.doe@example.com",
+      "phone": "123-456-7890",
+      "dob": "1985-07-13T00:00:00Z",
+      "address": {
+        "street": "123 Main St",
+        "city": "Springfield",
+        "state": "IL",
+        "zip_code": "62701",
+        "country": "USA"
+      },
+      "position": "Developer",
+      "department": "IT",
+      "salary": 85000,
+      "hire_date": "2018-06-15T00:00:00Z",
+      "manager_id": "60f5a4f9e1f74e6b9a3b1234",
+      "projects": [
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b5678",
+          "name": "project management software",
+          "start_date": "2021-01-01T00:00:00Z",
+          "end_date": "2023-06-01T00:00:00Z"
+        },
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b6789",
+          "name": "e-commerce platform",
+          "start_date": "2022-03-01T00:00:00Z",
+          "end_date": "2023-08-01T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "_id": "60f5a4f9e1f74e6b9a3b4568",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "email": "jane.smith@example.com",
+      "phone": "987-654-3210",
+      "dob": "1990-05-22T00:00:00Z",
+      "address": {
+        "street": "456 Elm St",
+        "city": "Metropolis",
+        "state": "NY",
+        "zip_code": "10001",
+        "country": "USA"
+      },
+      "position": "Manager",
+      "department": "Sales",
+      "salary": 95000,
+      "hire_date": "2017-09-30T00:00:00Z",
+      "manager_id": "60f5a4f9e1f74e6b9a3b2345",
+      "projects": [
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b7890",
+          "name": "CRM system upgrade",
+          "start_date": "2020-07-15T00:00:00Z",
+          "end_date": "2021-12-15T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "_id": "60f5a4f9e1f74e6b9a3b4569",
+      "first_name": "Michael",
+      "last_name": "Johnson",
+      "email": "michael.johnson@example.com",
+      "phone": "555-123-4567",
+      "dob": "1982-12-01T00:00:00Z",
+      "address": {
+        "street": "789 Oak St",
+        "city": "Gotham",
+        "state": "NJ",
+        "zip_code": "07001",
+        "country": "USA"
+      },
+      "position": "Analyst",
+      "department": "Finance",
+      "salary": 75000,
+      "hire_date": "2019-01-10T00:00:00Z",
+      "manager_id": "60f5a4f9e1f74e6b9a3b3456",
+      "projects": [
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b8901",
+          "name": "financial data analysis",
+          "start_date": "2021-05-01T00:00:00Z",
+          "end_date": "2022-11-01T00:00:00Z"
+        },
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b9012",
+          "name": "budget planning tool",
+          "start_date": "2022-02-01T00:00:00Z",
+          "end_date": "2023-05-01T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "_id": "60f5a4f9e1f74e6b9a3b4570",
+      "first_name": "Emily",
+      "last_name": "Davis",
+      "email": "emily.davis@example.com",
+      "phone": "444-321-9876",
+      "dob": "1995-03-11T00:00:00Z",
+      "address": {
+        "street": "101 Maple St",
+        "city": "Smallville",
+        "state": "KS",
+        "zip_code": "66002",
+        "country": "USA"
+      },
+      "position": "HR",
+      "department": "HR",
+      "salary": 65000,
+      "hire_date": "2020-11-20T00:00:00Z",
+      "manager_id": "60f5a4f9e1f74e6b9a3b4567",
+      "projects": [
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b0123",
+          "name": "employee engagement program",
+          "start_date": "2021-03-15T00:00:00Z",
+          "end_date": "2022-06-15T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "_id": "60f5a4f9e1f74e6b9a3b4571",
+      "first_name": "David",
+      "last_name": "Brown",
+      "email": "david.brown@example.com",
+      "phone": "333-654-7890",
+      "dob": "1988-08-25T00:00:00Z",
+      "address": {
+        "street": "202 Birch St",
+        "city": "Star City",
+        "state": "CA",
+        "zip_code": "90001",
+        "country": "USA"
+      },
+      "position": "Sales",
+      "department": "Sales",
+      "salary": 72000,
+      "hire_date": "2021-07-05T00:00:00Z",
+      "manager_id": "60f5a4f9e1f74e6b9a3b6789",
+      "projects": [
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b1234",
+          "name": "market research",
+          "start_date": "2022-01-10T00:00:00Z",
+          "end_date": "2023-07-10T00:00:00Z"
+        },
+        {
+          "project_id": "60f5a4f9e1f74e6b9a3b2345",
+          "name": "sales strategy",
+          "start_date": "2023-02-01T00:00:00Z",
+          "end_date": "2024-05-01T00:00:00Z"
+        }
+      ]
+    }
+  ]
+}
