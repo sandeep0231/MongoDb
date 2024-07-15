@@ -220,16 +220,24 @@ db.employees.aggregate([{$group:{_id:"$department" , countEmp:{$sum:1} }}, {$sor
 db.employees.aggregate([{$group:{_id:null ,TotalSalary:{$sum:"$salary"}}}]);
 
 ---------------------------------------------------------------------------------------------------------------------
-10 ) 
+10 ) Which country has the highest number of  employees from the employees collection ?
+
+db.employees.aggregate([{$group:{_id:"$address.country",count:{$sum:1}}},{$sort:{count:-1}},{$limit:1}]);
 
 
 ---------------------------------------------------------------------------------------------------------------------
-
+11)  Find the unique department name from the employees collection  ?
+db.employees.aggregate([{$group:{_id:"$department"}}]);
 
 
 ---------------------------------------------------------------------------------------------------------------------
+12)  What is the average number of projects per employees  ( where the project fields is an Array type ) from employees collections ?
 
-
+db.employees.aggregate([ 
+{$unwind:"$projects"} ,
+{$group:{_id:"$_id" , numberOfProjects:{$sum:1} }},
+  {$group:{_id:null,  AvgNoOfProjects:{$avg:"$numberOfProjects"}}}
+  ]);
 ---------------------------------------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------------------------------------
