@@ -238,10 +238,17 @@ db.employees.aggregate([
 {$group:{_id:"$_id" , numberOfProjects:{$sum:1} }},
   {$group:{_id:null,  AvgNoOfProjects:{$avg:"$numberOfProjects"}}}
   ]);
----------------------------------------------------------------------------------------------------------------------
+
 
 ---------------------------------------------------------------------------------------------------------------------
+13) Add  the field in a each document of collection total number of project per or array count of projects  for output ? 
 
+db.employees.aggregate([ {$addFields: { noOfProject:{ $size: {$ifNull:["$projects",[] ] } }} }   ]);
+
+---------------------------------------------------------------------------------------------------------------------
+14) Find those employees who's phone number starting from "123-" match in employees collection ? 
+
+db.employees.aggregate([{   $match:{ "phone": /^123-\d{3}-\d{4}$/ }  }]);
 ---------------------------------------------------------------------------------------------------------------------
 
 
