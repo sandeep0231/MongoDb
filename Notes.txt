@@ -240,8 +240,68 @@ console.log(result.value); // Updated or newly inserted document
          ############################## *********MONGO DB AGGREGATION AND PIPELINE********* ##############################
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#) what is $unwind in mongodb ?
+
+The $unwind operator in MongoDB is used to deconstruct an array field from the input documents, creating a separate document for each element of the array. This is particularly useful in aggregation pipelines when you want to work with each element of an array individually.
+
+How $unwind Works
+When you apply $unwind to an array field:
+
+Each element of the array generates a new document.
+Other fields in the original document are repeated for each new document.
+Syntax ::-
+{
+  $unwind: "$arrayField"
+}
+
+
+
+Example
+Consider a collection named students with the following documents:
+
+{ "_id": 1, "name": "Alice", "scores": [85, 90, 95] }
+{ "_id": 2, "name": "Bob", "scores": [80, 85] }
+Using $unwind on the scores array:
+
+
+db.students.aggregate([
+  { $unwind: "$scores" }
+])
+
+
+
+The result will be:
+{ "_id": 1, "name": "Alice", "scores": 85 }
+{ "_id": 1, "name": "Alice", "scores": 90 }
+{ "_id": 1, "name": "Alice", "scores": 95 }
+{ "_id": 2, "name": "Bob", "scores": 80 }
+{ "_id": 2, "name": "Bob", "scores": 85 }
+
+
+Additional Options
+Preserving Empty Arrays: By default, if the array is empty or doesn’t exist, $unwind will exclude the document. You can use preserveNullAndEmptyArrays: true to keep those documents.
+
+
+{
+  $unwind: {
+    path: "$arrayField",
+    preserveNullAndEmptyArrays: true
+  }
+}
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# what is $addfiled in mongodb  ?
+
+The $addFields operator in MongoDB is used to add new fields to documents within an aggregation pipeline. It can either add new fields or modify existing ones based on specified expressions.
+
+Syntax::- 
+
+{
+  $addFields: {
+    "newField": <expression>,
+    "existingField": <newExpression>
+  }
+}
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
