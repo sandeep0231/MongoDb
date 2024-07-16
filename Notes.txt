@@ -369,8 +369,130 @@ Syntax::-
 }
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#) what is $all in mongodb ?
+
+
+The $all operator in MongoDB is used to match documents that contain an array field with all the specified elements. This operator is useful when you want to ensure
+that an array contains multiple specific values.
+
+Example Usage
+Suppose you have a collection of documents representing employees, and each document has a skills array:
+
+{
+  "_id": 1,
+  "name": "Alice",
+  "skills": ["JavaScript", "MongoDB", "Node.js"]
+}
+{
+  "_id": 2,
+  "name": "Bob",
+  "skills": ["Python", "Django"]
+}
+{
+  "_id": 3,
+  "name": "Charlie",
+  "skills": ["JavaScript", "Node.js"]
+}
+
+
+Query with $all
+If you want to find employees who have both "JavaScript" and "Node.js" in their skills array, you would use $all like this:
+db.employees.find({
+  skills: { $all: ["JavaScript", "Node.js"] }
+});
+
+Result
+This query would return:
+{
+  "_id": 1,
+  "name": "Alice",
+  "skills": ["JavaScript", "MongoDB", "Node.js"]
+}
+{
+  "_id": 3,
+  "name": "Charlie",
+  "skills": ["JavaScript", "Node.js"]
+}
+
+
+Important Notes:::-
+The order of elements in the array does not matter when using $all.
+The $all operator can only be used with arrays.
+It can be combined with other operators for more complex queries.
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+##) What is $lookup in mongodb ?
+
+Certainly! The $lookup stage in MongoDB is used for performing a left outer join between two collections. This allows you to combine documents from different collections based on a specified field.
+
+Basic Syntax::-
+
+{
+  $lookup: {
+    from: "otherCollection", // The collection to join
+    localField: "fieldFromInputCollection", // Field from the input collection
+    foreignField: "fieldFromOtherCollection", // Field from the other collection
+    as: "outputArrayField" // Name of the new array field to add to the output documents
+  }
+}
+
+
+Example Scenario
+Let’s consider two collections: employees and departments.
+
+
+employees Collection:-
+[
+  { "_id": 1, "name": "Alice", "departmentId": 101 },
+  { "_id": 2, "name": "Bob", "departmentId": 102 },
+  { "_id": 3, "name": "Charlie", "departmentId": 101 }
+]
+
+departments Collection:-
+[
+  { "_id": 101, "deptName": "HR" },
+  { "_id": 102, "deptName": "Engineering" },
+  { "_id": 103, "deptName": "Marketing" }
+]
+
+
+Using $lookup to Join Collections:---
+To join these two collections and get the department names along with the employee documents, you can use the $lookup operator.
+
+Aggregation Query::-
+db.employees.aggregate([
+  {
+    $lookup: {
+      from: "departments",             // The collection to join
+      localField: "departmentId",      // Field from employees
+      foreignField: "_id",             // Field from departments
+      as: "departmentDetails"          // Output field name
+    }
+  }
+]);
+
+Explanation of the Output
+Each employee document now includes an additional field, departmentDetails, which is an array containing the corresponding department document.
+If an employee's department does not exist in the departments collection, the departmentDetails array will be empty.
+
+:::Using $lookup with Unwinding:::
+You can further process the result using $unwind if you want to flatten the array:
+
+db.employees.aggregate([
+  {
+    $lookup: {
+      from: "departments",
+      localField: "departmentId",
+      foreignField: "_id",
+      as: "departmentDetails"
+    }
+  },
+  {
+    $unwind: "$departmentDetails" // Flatten the array
+  }
+]);
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
