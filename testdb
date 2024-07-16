@@ -267,13 +267,20 @@ NOTE ::- We can add/push  a  data field  according to our requirements.
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
-17)
+17) Find employees or detail who's   project name is "financial data analysis" from the employees collection ?
+
+db.employees.aggregate([ { $match:{"projects.name":"financial data analysis" } }   ]);
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
+18)   Find employees or detail who's   not involve in  "financial data analysis" project  from the employees collection ?
+
+db.employees.aggregate([ { $match:{"projects.name":{$ne:"financial data analysis"} } }   ]);
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
+19) 
+
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
