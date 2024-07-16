@@ -273,6 +273,34 @@ console.log(result.value); // Updated or newly inserted document
 
                 $exists: Checks for the existence of a field
                 $type: Checks the BSON type of a field
+------------------------------------------------------------------------------------
+
+## EXAMPLE OF USE ALL OPRATORS ::-
+
+// Equal to
+db.collection.find({ age: { $eq: 30 } });
+
+// Not equal to
+db.collection.find({ age: { $ne: 30 } });
+
+// In
+db.collection.find({ status: { $in: ["active", "pending"] } });
+
+// Not in
+db.collection.find({ status: { $nin: ["inactive", "suspended"] } });
+
+// Greater than
+db.collection.find({ age: { $gt: 30 } });
+
+// Greater than or equal to
+db.collection.find({ age: { $gte: 30 } });
+
+// Less than
+db.collection.find({ age: { $lt: 30 } });
+
+// Less than or equal to
+db.collection.find({ age: { $lte: 30 } });
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
