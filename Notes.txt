@@ -350,7 +350,17 @@ Example: db.collection.createIndex({ fieldName: "hashed" }).
 
 
 
+Monitoring and Managing Indexes:::------
 
+View Indexes:-
+db.collectionName.getIndexes();
+
+Drop Index:-
+db.collectionName.dropIndex("indexName");
+
+Index Usage Statistics:-
+Use the explain() method to understand how indexes are being utilized in queries.
+db.collectionName.find({ fieldName: "value" }).explain("executionStats");
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
