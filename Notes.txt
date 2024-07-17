@@ -291,8 +291,87 @@ db.collectionName.deleteOne({ name: "Alice" });
 db.collectionName.deleteMany({ city: "Los Angeles" });
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+First  of all, basic difference between findOne() and find():
+
+findOne() - if query matches, first document is returned, otherwise null.
+
+find() - no matter the number of documents matched, a cursor is returned, never null.
+
+So when put in an if condition, findOne() can convert to false when it doesn't match any document. As find() returns a cursor object and never returns null, will convert to true when put in an if condition.
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#) What are indexes in MongoDB, and why are they important?
+
+What are Indexes in MongoDB?
+Indexes in MongoDB are special data structures that improve the speed of data retrieval operations on a database collection. They work similarly to indexes in books, allowing the database to find data without scanning every document.
+
+Why are Indexes Important?
+
+1)Improved Query Performance:
+Indexes significantly speed up the performance of read operations by reducing the number of documents MongoDB needs to scan. Without indexes, MongoDB performs a collection scan, examining each document.
+
+2) Efficient Sorting:
+Indexes can improve the efficiency of sort operations, allowing the database to return results in a sorted order more quickly.
+
+3) Support for Unique Constraints:
+Indexes can enforce uniqueness on specific fields, ensuring that no two documents can have the same value for those fields.
+
+4)Optimized Queries:
+MongoDB's query planner uses indexes to determine the most efficient way to execute a query, resulting in faster query execution.
+
+
+Types of Indexes in MongoDB :::-----
+
+1) Single Field Index:-
+Indexes on a single field of a document.
+Example: db.collection.createIndex({ fieldName: 1 }) (1 for ascending, -1 for descending).
+
+
+2) Compound Index:-
+Indexes on multiple fields. Useful for queries that filter or sort on multiple fields.
+Example: db.collection.createIndex({ field1: 1, field2: -1 }).
+
+3) Multikey Index:-
+Indexes on array fields, allowing indexing of each element in an array.
+Example: db.collection.createIndex({ arrayField: 1 }).
+
+4) Text Index:-
+Enables text search on string fields, useful for search functionality.
+Example: db.collection.createIndex({ fieldName: "text" }).
+
+5) Geospatial Index:-
+Supports queries that require location-based data, such as searching by geographic coordinates.
+Example: db.collection.createIndex({ location: "2dsphere" }).
+
+6) Hashed Index:-
+Useful for sharding and allows for efficient equality checks on fields.
+Example: db.collection.createIndex({ fieldName: "hashed" }).
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
          ############################## *********MONGO DB AGGREGATION AND PIPELINE********* ##############################
