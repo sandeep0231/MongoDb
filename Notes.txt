@@ -228,10 +228,67 @@ const result = await db.users.findOneAndUpdate(
 );
 console.log(result.value); // Updated or newly inserted document
 
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#) How do you perform a basic CRUD operation in MongoDB?
+
+1. Create
+To insert documents into a collection, you can use insertOne or insertMany.
+
+// Insert one document
+db.collectionName.insertOne({
+    name: "Alice",
+    age: 30,
+    city: "New York"
+});
+
+// Insert multiple documents
+db.collectionName.insertMany([
+    { name: "Bob", age: 25, city: "Los Angeles" },
+    { name: "Charlie", age: 35, city: "Chicago" }
+]);
+
+2. Read
+To query documents, you can use find or findOne.
+
+// Find all documents
+db.collectionName.find({});
+
+// Find a single document
+db.collectionName.findOne({ name: "Alice" });
+
+// Find with specific criteria
+db.collectionName.find({ age: { $gt: 30 } }); // Find documents where age is greater than 30
 
 
+3. Update
+To modify existing documents, use updateOne, updateMany, or replaceOne.
+
+// Update one document
+db.collectionName.updateOne(
+    { name: "Alice" }, // Filter
+    { $set: { age: 31 } } // Update
+);
+
+// Update multiple documents
+db.collectionName.updateMany(
+    { city: "New York" },
+    { $set: { city: "NYC" } }
+);
+
+// Replace a document
+db.collectionName.replaceOne(
+    { name: "Bob" },
+    { name: "Bobby", age: 26, city: "Los Angeles" }
+);
+
+4. Delete
+To remove documents, use deleteOne or deleteMany.
+
+// Delete one document
+db.collectionName.deleteOne({ name: "Alice" });
+
+// Delete multiple documents
+db.collectionName.deleteMany({ city: "Los Angeles" });
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -523,7 +580,82 @@ db.employees.aggregate([
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+                                  ################******* Normalization vs. Denormalization *******###############
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Normalization:
 
+Definition: The process of organizing data to reduce redundancy and improve data integrity. It typically involves splitting data into multiple collections and using references to connect them.
+
+Pros:
+Reduces data duplication.
+Ensures consistency and integrity across the database.
+
+Cons:
+May lead to complex queries involving multiple collections (joins).
+Can impact read performance due to additional lookups.
+
+
+Denormalization:
+Definition: The process of combining data from multiple collections into a single collection to improve read performance. This often leads to data duplication.
+
+Pros:
+Simplifies data retrieval by reducing the need for multiple queries or joins.
+Enhances read performance, especially in read-heavy applications.
+
+Cons:
+Increases data redundancy, which can lead to inconsistencies.
+Updates can be more complex since the same data may exist in multiple places.
+
+
+
+Certainly! Let’s discuss normalization vs. denormalization and embedding vs. referencing in MongoDB.
+
+Normalization vs. Denormalization
+Normalization:
+
+Definition: The process of organizing data to reduce redundancy and improve data integrity. It typically involves splitting data into multiple collections and using references to connect them.
+Pros:
+Reduces data duplication.
+Ensures consistency and integrity across the database.
+Cons:
+May lead to complex queries involving multiple collections (joins).
+Can impact read performance due to additional lookups.
+
+
+Denormalization:
+Definition: The process of combining data from multiple collections into a single collection to improve read performance. This often leads to data duplication.
+Pros:
+Simplifies data retrieval by reducing the need for multiple queries or joins.
+Enhances read performance, especially in read-heavy applications.
+Cons:
+Increases data redundancy, which can lead to inconsistencies.
+Updates can be more complex since the same data may exist in multiple places.
+
+
+..........................................................................................................................
+
+Embedding vs. Referencing
+
+Embedding:
+Definition: Storing related data within a single document as a nested object or array. This is useful for data that is frequently accessed together.
+When to Use:
+When one-to-few relationships exist (e.g., user profiles with addresses).
+When data is mostly read and rarely updated.
+Pros:
+Reduces the need for joins and improves read performance.
+Keeps related data together, which can be advantageous for atomic operations.
+Cons:
+Can lead to document size limitations if too much data is embedded.
+Difficult to manage large arrays or deeply nested structures.
+
+
+Summary
+Normalization vs. Denormalization:
+
+Normalization reduces redundancy, while denormalization enhances read performance at the cost of data duplication.
+Embedding vs. Referencing:
+
+Embedding is useful for closely related data and improves read performance, while referencing is better for managing relationships and large datasets but can complicate queries.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -538,37 +670,6 @@ db.employees.aggregate([
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -582,6 +683,5 @@ db.employees.aggregate([
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
