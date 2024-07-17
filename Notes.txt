@@ -361,6 +361,15 @@ db.collectionName.dropIndex("indexName");
 Index Usage Statistics:-
 Use the explain() method to understand how indexes are being utilized in queries.
 db.collectionName.find({ fieldName: "value" }).explain("executionStats");
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+##)  Geospatial Queries : --  MongoDB's geospatial queries allow for complex spatial searches and analysis. By leveraging geospatial indexes and operators, you can efficiently query and manipulate geographic data, making it a powerful tool for applications that require location-based features.
+
+MongoDB provides powerful features for storing and querying geospatial data. You can use these features to perform queries based on geographic locations, such as
+finding points within a certain distance or searching for documents based on their coordinates.
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
