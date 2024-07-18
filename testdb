@@ -305,6 +305,7 @@ db.orders.aggregate([
 
 ---------------------OR----IF we want most heighest ordered customer / single customer  then we use query like this ------------
 db.orders.aggregate([ 
+{$match:{orderDate:{ $gte:startDate, $lte:endDate} } },
 {$lookup:{from:'customers',localField:"customerId",foreignField:"_id",as:"customerDetail" }}, 
 {$group: {_id:"$customerId", count:{$sum:1}, name:{$first:"$customerDetail.name"} } },
 {$sort:{_id:-1}},{$limit:1}, {$project:{name:1 } } ]);
