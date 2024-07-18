@@ -60,3 +60,13 @@ What are the new features introduced in the latest version of MongoDB? How do th
 Integration and Use Cases:---------------------------------------------------------------------------
 How would you integrate MongoDB with a backend framework like Node.js, Django, or Spring Boot?
 Describe a project where you used MongoDB. What were the key challenges and how did you overcome them?
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+1) Cluster in mongodb ?
+2) Replica in mongodb ,primary and secoundry replica , and can we have a multiple primary replica in mongodb ?
+3) How to create a replica ?
+4) third heiest salary  from IT deparment ?
+5) we have two collection one is department and one is employee collection we have find 3rd highest salary of of IT department employees.
+6) two collection one is order one is cusrtomer ,we have to find  a customer who's ordered most product   in current month ?
