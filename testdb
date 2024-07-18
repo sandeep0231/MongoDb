@@ -285,13 +285,29 @@ db.employees.aggregate([ {$match:{"salary":{$gt:75000}} } ]);
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
-20) 
+20) Find the 3rd highest salary  of employee who's department is IT ?
 
+db.employees.aggregate([ {$group: {_id: "$salary"} } ,{$sort:{_id:-1}},{$limit:3} , {$sort:{_id:1}} ,{$limit:1}]);
+ --------------------OR--------------------
+db.employees.aggregate([ {$group: {_id: "$salary"} } ,{$sort:{_id:-1}},{$limit:3} ,{$project:{salary:"$_id"}}, {$sort:{salary:1}} ,{$limit:1}]);
 
 ---------------------------------------------------------------------------------------------------------------------
 
+21) two collection one is order one is cusrtomer ,we have to find  a customer who's ordered most product   in current month ?
+
+db.orders.aggregate([
+{$match:{orderDate:{ $gte:startDate, $lte:endDate} } },
+{$lookup:{from:'customers',localField:"customerId",foreignField:"_id",as:"customerDetail" }}, 
+{$group: {_id:"$customerId", count:{$sum:1}, name:{$first:"$customerDetail.name"} } } , {$project:{name:1 } }
+]);
 
 
+
+---------------------OR----IF we want most heighest ordered customer / single customer  then we use query like this ------------
+db.orders.aggregate([ 
+{$lookup:{from:'customers',localField:"customerId",foreignField:"_id",as:"customerDetail" }}, 
+{$group: {_id:"$customerId", count:{$sum:1}, name:{$first:"$customerDetail.name"} } },
+{$sort:{_id:-1}},{$limit:1}, {$project:{name:1 } } ]);
 ---------------------------------------------------------------------------------------------------------------------
 
 
