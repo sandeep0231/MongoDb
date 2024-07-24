@@ -291,6 +291,9 @@ db.employees.aggregate([ {$group: {_id: "$salary"} } ,{$sort:{_id:-1}},{$limit:3
  --------------------OR--------------------
 db.employees.aggregate([ {$group: {_id: "$salary"} } ,{$sort:{_id:-1}},{$limit:3} ,{$project:{salary:"$_id"}}, {$sort:{salary:1}} ,{$limit:1}]);
 
+------------------OR-- Useing skip----------------------
+db.employees.aggregate([{ $group:{_id:"$salary"} },{$sort:{_id:-1}} ,{$skip:2},{$limit:1} ]);
+
 ---------------------------------------------------------------------------------------------------------------------
 
 21) two collection one is order one is cusrtomer ,we have to find  a customer who's ordered most product   in current month ?
